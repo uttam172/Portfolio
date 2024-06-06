@@ -11,6 +11,7 @@ const Contact = () => {
     const formRef = useRef(null)
     const [form, setForm] = useState({ name: '', email: '', message: '' })
     const [isLoading, setisLoading] = useState(false)
+    const [currentAnimation, setCurrentAnimation] = useState('idle')
 
     const handleChange = (e) => {
         setForm({
@@ -22,6 +23,7 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setisLoading(true)
+        setCurrentAnimation('run')
 
         emailjs.send(
             import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -41,14 +43,15 @@ const Contact = () => {
             setForm({ name: '', email: '', message: '' })
         }).catch((error) => {
             setisLoading(false)
+            setCurrentAnimation('idle')
             console.log(error)
             // TODO: Show error message
         })
     }
 
-    const handleFocus = (e) => { }
+    const handleFocus = (e) => setCurrentAnimation('walk')
 
-    const handleBlur = (e) => { }
+    const handleBlur = (e) => setCurrentAnimation('idle')
 
     return (
         <section className="relative flex lg:flex-row flex-col max-container">
@@ -116,14 +119,20 @@ const Contact = () => {
             <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
                 <Canvas
                     camera={{
-                        position: [0, 0, 5]
+                        position: [0, 0, 5],
+                        fov: 75,
+                        near: 0.1,
+                        far: 1000,
                     }}
                 >
+                    <directionalLight intensity={2.5} position={[0, 0, 1]} />
+                    <ambientLight intensity={0.5} />
                     <Suspense fallback={<Loader />}>
                         <Fox
+                            currentAnimation={currentAnimation}
                             position={[0.5, 0.35, 0]}
-                            rotation={[12, 0, 0]}
-                            scale={[0.5, 0.5, 0.5]}
+                            rotation={[12.6, -0.6, 0]}
+                            scale={[0.7, 0.7, 0.7]}
                         />
                     </Suspense>
                 </Canvas>
@@ -133,3 +142,5 @@ const Contact = () => {
 }
 
 export default Contact
+
+

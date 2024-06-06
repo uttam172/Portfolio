@@ -45,7 +45,7 @@ const Home = () => {
         <section className="w-full h-screen relative">
 
             <div className="absolute top-28 left-0 right-0 z-10 items-center flex justify-center">
-                {currentStage && <HomeInfo currentStage={currentStage}/>}
+                {currentStage && <HomeInfo currentStage={currentStage} />}
             </div>
 
             <Canvas
