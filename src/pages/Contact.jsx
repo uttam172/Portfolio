@@ -5,6 +5,8 @@ import { Canvas } from '@react-three/fiber'
 import Loader from "../components/Loader"
 
 import Fox from "../models/Fox"
+import useAlert from "../hooks/useAlert"
+import Alert from "../components/Alert"
 
 const Contact = () => {
 
@@ -12,6 +14,8 @@ const Contact = () => {
     const [form, setForm] = useState({ name: '', email: '', message: '' })
     const [isLoading, setisLoading] = useState(false)
     const [currentAnimation, setCurrentAnimation] = useState('idle')
+
+    const { alert, showAlert, hideAlert } = useAlert()
 
     const handleChange = (e) => {
         setForm({
@@ -23,7 +27,7 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setisLoading(true)
-        setCurrentAnimation('run')
+        setCurrentAnimation('hit')
 
         emailjs.send(
             import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -35,17 +39,29 @@ const Contact = () => {
                 message: form.message,
             },
             import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+
         ).then(() => {
             setisLoading(false)
-            // TODO: Show success message
-            // TODO: Hide an alert
+            showAlert({
+                show: true,
+                text: 'Message sent successfully!',
+                type: 'success'
+            })
+            setTimeout(() => {
+                hideAlert()
+                setCurrentAnimation('idle')
+                setForm({ name: '', email: '', message: '' })
+            }, [3000])
 
-            setForm({ name: '', email: '', message: '' })
         }).catch((error) => {
             setisLoading(false)
             setCurrentAnimation('idle')
             console.log(error)
-            // TODO: Show error message
+            showAlert({
+                show: true,
+                text: "I didn't received your message...",
+                type: 'danger'
+            })
         })
     }
 
@@ -54,7 +70,10 @@ const Contact = () => {
     const handleBlur = (e) => setCurrentAnimation('idle')
 
     return (
-        <section className="relative flex lg:flex-row flex-col max-container">
+        <section className="relative flex lg:flex-row flex-col max-container gap-20">
+
+            {alert.show && <Alert {...alert} />}
+
             <div className="flex-1 min-w-[50%] flex flex-col">
                 <h1 className="head-text">Get in Touch</h1>
 
@@ -130,8 +149,8 @@ const Contact = () => {
                     <Suspense fallback={<Loader />}>
                         <Fox
                             currentAnimation={currentAnimation}
-                            position={[0.5, 0.35, 0]}
-                            rotation={[12.6, -0.6, 0]}
+                            position={[0.5, 0.35, -1]}
+                            rotation={[12.6, -0.65, 0]}
                             scale={[0.7, 0.7, 0.7]}
                         />
                     </Suspense>
