@@ -109,7 +109,7 @@ export const skills = [
     }
 ];
 
-export const experiences = [
+export const experience = [
     {
         title: "React.js Developer",
         company_name: "Starbucks",
@@ -182,7 +182,7 @@ export const socialLinks = [
     }
 ];
 
-export const projects = [
+export const project = [
     {
         iconUrl: pricewise,
         theme: 'btn-back-red',

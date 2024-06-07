@@ -70,7 +70,7 @@ const Contact = () => {
     const handleBlur = (e) => setCurrentAnimation('idle')
 
     return (
-        <section className="relative flex lg:flex-row flex-col max-container gap-20">
+        <section className="relative flex lg:flex-row flex-col max-container gap-20 h-[100vh]">
 
             {alert.show && <Alert {...alert} />}
 
