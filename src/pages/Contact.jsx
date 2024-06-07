@@ -135,7 +135,7 @@ const Contact = () => {
                 </form>
             </div>
 
-            <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+            <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] ">
                 <Canvas
                     camera={{
                         position: [0, 0, 5],
