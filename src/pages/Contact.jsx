@@ -2,7 +2,7 @@ import { Suspense, useRef, useState } from "react"
 import emailjs from '@emailjs/browser'
 import { Canvas } from '@react-three/fiber'
 
-import Loader from "../components/Loader"
+import LoaderX from "../components/LoaderX"
 
 import Fox from "../models/Fox"
 import useAlert from "../hooks/useAlert"
@@ -70,7 +70,7 @@ const Contact = () => {
     const handleBlur = (e) => setCurrentAnimation('idle')
 
     return (
-        <section className="relative flex lg:flex-row flex-col max-container gap-20 h-[100vh]">
+        <section className="relative flex lg:flex-row flex-col max-container gap-20 h-full pb-28">
 
             {alert.show && <Alert {...alert} />}
 
@@ -146,7 +146,8 @@ const Contact = () => {
                 >
                     <directionalLight intensity={2.5} position={[0, 0, 1]} />
                     <ambientLight intensity={0.5} />
-                    <Suspense fallback={<Loader />}>
+
+                    <Suspense fallback={<LoaderX />} >
                         <Fox
                             currentAnimation={currentAnimation}
                             position={[0.5, 0.35, -1]}

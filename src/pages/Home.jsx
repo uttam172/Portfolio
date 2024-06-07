@@ -1,7 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 
-import Loader from '../components/Loader'
+import LoaderX from '../components/LoaderX'
 import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
@@ -69,7 +69,7 @@ const Home = () => {
                 className={`w-full h-full bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
                 camera={{ near: 0.1, far: 1000 }}
             >
-                <Suspense fallback={<Loader />} >
+                <Suspense fallback={<LoaderX />} >
                     <directionalLight
                         position={[1, 1, 1]}
                         intensity={2}
