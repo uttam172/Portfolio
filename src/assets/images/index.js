@@ -3,7 +3,8 @@ import meta from './meta.png'
 import shopify from './shopify.png'
 import starbucks from './starbucks.png'
 import tesla from './tesla.png'
-import logo from './logo.svg'
+import nanomine from './nanomineTechnolabs.png'
+import peacock from './peacockTechnologies.png'
 
 export {
     hero,
@@ -11,5 +12,6 @@ export {
     shopify,
     starbucks,
     tesla,
-    logo
+    nanomine,
+    peacock,
 }

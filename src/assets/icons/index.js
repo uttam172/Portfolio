@@ -1,3 +1,4 @@
+import angular from './angular.svg'
 import css from './css.svg'
 import express from './express.svg'
 import git from './git.svg'
@@ -10,6 +11,7 @@ import mui from './mui.svg'
 import nextjs from './nextjs.svg'
 import nodejs from './nodejs.svg'
 import react from './react.svg'
+import reactnative from './reactnative.svg'
 import redux from './redux.svg'
 import sass from './sass.svg'
 import tailwindcss from './tailwindcss.svg'
@@ -26,8 +28,10 @@ import arrow from './arrow.svg'
 import contact from './contact.svg'
 import soundon from './soundon.png'
 import soundoff from './soundoff.png'
+import zustand from './zustand.svg'
 
 export {
+    angular,
     css,
     express,
     git,
@@ -40,6 +44,7 @@ export {
     nextjs,
     nodejs,
     react,
+    reactnative,
     redux,
     sass,
     tailwindcss,
@@ -55,5 +60,6 @@ export {
     arrow,
     contact,
     soundon,
-    soundoff
+    soundoff,
+    zustand
 }
