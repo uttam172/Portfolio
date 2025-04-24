@@ -1,8 +1,9 @@
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
 
-import { skills, experience } from '../constants'
+import { skills, experience, socialLinks } from '../constants'
 import CTA from '../components/CTA'
+import { Link } from 'react-router-dom'
 
 const About = () => {
     return (
@@ -23,7 +24,7 @@ const About = () => {
                 <div className="mt-16 flex flex-wrap gap-12">
 
                     {skills.map((skill) => (
-                        <div className="block-container w-20 h-20">
+                        <div className="block-container w-20 h-20" key={skill.name}>
                             <div className="btn-back rounded-xl" />
                             <div className="btn-front rounded-xl flex justify-center items-center">
                                 <img
@@ -51,7 +52,7 @@ const About = () => {
                     <VerticalTimeline>
                         {experience.map((experience) => (
                             <VerticalTimelineElement
-                                key={experience.company_name}
+                                key={experience.date}
                                 date={experience.date}
                                 icon={
                                     <div className='flex justify-center items-center w-full h-full'>
@@ -94,8 +95,29 @@ const About = () => {
 
             <hr className='border-slate-200' />
 
-            <CTA/>
-            
+            <div className="flex justify-center items-center gap-20 my-10">
+                {socialLinks.map((link) => (
+                    <>
+                        <Link to={link.link} key={link.name} target={link.target}>
+                            <div className="block-container w-20 h-20 ">
+                                <div className="btn-back rounded-xl shadow-2xl bg-gradient-to-br from-[#00c6ff]/30 to-[#0072ff]/30" />
+                                <div className="btn-front rounded-xl flex justify-center items-center">
+                                    <img
+                                        src={link.iconUrl}
+                                        alt={link.name}
+                                        className="w-1/2 h-1/2 object-contain"
+                                    />
+                                </div>
+                            </div>
+                        </Link>
+                    </>
+                ))}
+            </div>
+
+            <hr className='border-slate-200' />
+
+            <CTA />
+
         </section>
     )
 }

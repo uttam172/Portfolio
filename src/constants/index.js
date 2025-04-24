@@ -1,34 +1,7 @@
 import { nanomine, peacock } from "../assets/images"
 import { aiqs, aora, cineversse, homehive, leaselink, postify } from "../assets/projectIcons"
-import {
-    angular,
-    car,
-    contact,
-    css,
-    estate,
-    express,
-    git,
-    github,
-    html,
-    javascript,
-    linkedin,
-    mongodb,
-    motion,
-    mui,
-    nextjs,
-    nodejs,
-    pricewise,
-    react,
-    reactnative,
-    redux,
-    sass,
-    snapgram,
-    summiz,
-    tailwindcss,
-    threads,
-    typescript,
-    zustand
-} from "../assets/icons";
+import { angular, css, express, git, github, html, javascript, mongodb, motion, mui, nextjs, nodejs, react, reactnative, redux, sass, tailwindcss, typescript, zustand } from "../assets/skillIcons"
+import { email, linkedin, twitter } from "../assets/socialIcons"
 
 export const skills = [
 
@@ -173,20 +146,29 @@ export const experience = [
 
 export const socialLinks = [
     {
-        name: 'Contact',
-        iconUrl: contact,
+        name: 'Email',
+        iconUrl: email,
         link: '/contact',
+        target: '_self'
     },
     {
-        name: 'GitHub',
+        name: 'GitHubs',
         iconUrl: github,
         link: 'https://github.com/uttam172',
+        target: '_blank'
     },
     {
         name: 'LinkedIn',
         iconUrl: linkedin,
         link: 'https://www.linkedin.com/in/uttam172',
-    }
+        target: '_blank'
+    },
+    {
+        name: 'Twitter',
+        iconUrl: twitter,
+        link: 'https://twitter.com/Uttam17_',
+        target: '_blank'
+    },
 ];
 
 export const project = [
