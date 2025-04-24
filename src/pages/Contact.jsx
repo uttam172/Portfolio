@@ -35,7 +35,7 @@ const Contact = () => {
             {
                 from_name: form.name,
                 to_name: "Uttam",
-                from_email: 'uttamdobariya17@gmail.com',
+                from_email: form.email,
                 message: form.message,
             },
             import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
@@ -51,17 +51,22 @@ const Contact = () => {
                 hideAlert()
                 setCurrentAnimation('idle')
                 setForm({ name: '', email: '', message: '' })
-            }, [3000])
+            }, 3000)
 
         }).catch((error) => {
             setisLoading(false)
+            setForm({ name: '', email: '', message: '' })
             setCurrentAnimation('idle')
             console.log(error)
             showAlert({
                 show: true,
                 text: "I didn't received your message...",
                 type: 'danger'
-            })
+            })            
+            setTimeout(() => {
+                hideAlert()
+                setCurrentAnimation('idle')
+            }, 3000)
         })
     }
 
