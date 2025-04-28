@@ -76,6 +76,25 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
         }
     }
 
+    const handleScroll = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        if (e.deltaY < 0) {
+            if (!isRotating) setIsRotating(true)
+            islandRef.current.rotation.y += 0.01 * Math.PI
+            rotationSpeed.current = 0.000000001
+        } else if (e.deltaY > 0) {
+            if (!isRotating) setIsRotating(true)
+            islandRef.current.rotation.y -= 0.01 * Math.PI
+            rotationSpeed.current = -0.000000001
+        }
+    }
+
+    const handleScrollEnd = (e) => {
+        setIsRotating(false)
+    }
+
     useFrame(() => {
         if (!isRotating) {
             rotationSpeed.current *= dampingFactor
@@ -112,6 +131,16 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
         canvas.addEventListener('pointermove', handlePointerMove)
         document.addEventListener('keydown', handleKeyDown)
         document.addEventListener('keyup', handleKeyUp)
+        canvas.addEventListener('wheel', handleScroll, { passive: false })
+
+        let scrollTimeout
+        const deboucedHandleScroll = () => {
+            clearTimeout(scrollTimeout)
+            scrollTimeout = setTimeout(() => {
+                handleScrollEnd()
+            }, 100)
+        }
+        canvas.addEventListener('wheel', deboucedHandleScroll)
 
         return () => {
             canvas.removeEventListener('pointerdown', handlePointerDown)
@@ -119,8 +148,10 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
             canvas.removeEventListener('pointermove', handlePointerMove)
             document.removeEventListener('keydown', handleKeyDown)
             document.removeEventListener('keyup', handleKeyUp)
+            canvas.addEventListener('wheel', handleScroll)
+            canvas.removeEventListener('wheel', deboucedHandleScroll)
         }
-    }, [gl, handlePointerDown, handlePointerMove, handlePointerUp, handleKeyDown, handleKeyUp])
+    }, [gl])
 
     return (
         <a.group ref={islandRef} {...props} >
