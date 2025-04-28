@@ -1,7 +1,7 @@
 import { nanomine, peacock } from "../assets/images"
 import { aiqs, aora, cineversse, homehive, leaselink, postify } from "../assets/projectIcons"
 import { angular, css, express, git, github, html, javascript, mongodb, motion, mui, nextjs, nodejs, react, reactnative, redux, sass, tailwindcss, typescript, zustand } from "../assets/skillIcons"
-import { email, linkedin, twitter } from "../assets/socialIcons"
+import { email, linkedin, twitter, x } from "../assets/socialIcons"
 
 export const skills = [
 
@@ -164,9 +164,9 @@ export const socialLinks = [
         target: '_blank'
     },
     {
-        name: 'Twitter',
-        iconUrl: twitter,
-        link: 'https://twitter.com/Uttam17_',
+        name: 'X',
+        iconUrl: x,
+        link: 'https://twitter.com/uttam172_',
         target: '_blank'
     },
 ];
